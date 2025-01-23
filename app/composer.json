@@ -1,0 +1,29 @@
+{
+    "name": "castroitalo/castroitalo",
+    "description": "PHP project template",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Castroitalo\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "castroitalsdealers",
+            "email": "italo@simpledealers.com.br"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.3",
+        "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.6",
+        "castroitalo/echoquery": "^1.0",
+        "league/plates": "^3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "mockery/mockery": "^1.6"
+    }
+}
