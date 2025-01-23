@@ -1,12 +1,16 @@
 {
     "name": "castroitalo/castroitalo",
-    "description": "PHP project template",
+    "description": "My Personal Website",
     "type": "project",
     "autoload": {
         "psr-4": {
             "Castroitalo\\": "src/",
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "config/app_config.php",
+            "config/database_config.php"
+        ]
     },
     "authors": [
         {
