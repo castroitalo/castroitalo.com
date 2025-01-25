@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Castroitalo\Database\Connection;
+use Castroitalo\Router\Router;
 use Castroitalo\Services\ServerService;
 use Castroitalo\Services\SessionService;
 use Dotenv\Dotenv;
@@ -42,3 +43,6 @@ if (is_null($databaseConnection)) {
 
 // Starts session
 SessionService::startSession();
+
+// Starts router
+$router = new Router();

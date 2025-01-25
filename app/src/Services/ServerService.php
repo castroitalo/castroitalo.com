@@ -45,7 +45,18 @@ class ServerService
             $apiResponseBody['data'] = $responseData;
         }
 
-        echo $apiResponseBody;
+        echo json_encode($apiResponseBody);
         exit();
+    }
+
+    /**
+     * Redirect to
+     *
+     * @param string $route
+     * @return void
+     */
+    static function redirectTo(string $route): void
+    {
+        header('Location: ' . $route);
     }
 }
