@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Castroitalo\Controllers\Errors\PageNotFoundController;
 use Castroitalo\Controllers\Errors\UnexpectedErrorController;
 use Castroitalo\Controllers\Home\HomeController;
+use Castroitalo\Controllers\PublicGpgKey\PublicGpgKeyController;
 use Castroitalo\Services\HttpService;
 use Castroitalo\Services\ServerService;
 
@@ -18,6 +19,11 @@ try {
         CONF_HTTP_GET,
         CONF_ROUTES_HOME,
         [HomeController::class, 'home']
+    );
+    $router->add(
+        CONF_HTTP_GET,
+        CONF_ROUTES_GPG_KEY,
+        [PublicGpgKeyController::class, 'publicGpgKey']
     );
 
     // Define default routes

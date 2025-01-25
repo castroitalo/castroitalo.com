@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Castroitalo\Controllers\Home;
+namespace Castroitalo\Controllers\PublicGpgKey;
 
 use Castroitalo\Services\ViewService;
 
-class HomeController
+class PublicGpgKeyController
 {
     private ?ViewService $view = null;
 
@@ -15,8 +15,8 @@ class HomeController
         $this->view = new ViewService();
     }
 
-    public function home(): void
+    public function publicGpgKey(): void
     {
-        $this->view->renderView('/pages/home');
+        $this->view->renderView('/pages/public_gpg_key');
     }
 }

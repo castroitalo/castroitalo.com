@@ -16,7 +16,7 @@ class ServerService
      *
      * @return bool
      */
-    static function isLocalhost(): bool
+    public static function isLocalhost(): bool
     {
         if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
             return true;
@@ -33,7 +33,7 @@ class ServerService
      * @param null|array $responseData
      * @return void
      */
-    static function setApiResponse(int $responseCode, string $responseMessage, ?array $responseData = null): void
+    public static function setApiResponse(int $responseCode, string $responseMessage, ?array $responseData = null): void
     {
         http_response_code($responseCode);
         header('Content-type: application/json');
@@ -55,8 +55,38 @@ class ServerService
      * @param string $route
      * @return void
      */
-    static function redirectTo(string $route): void
+    public static function redirectTo(string $route): void
     {
         header('Location: ' . $route);
+    }
+
+    /**
+     * Gets application current protocol
+     *
+     * @return string
+     */
+    public static function getProtocol(): string
+    {
+        if (
+            isset($_SERVER['HTTPS']) &&
+            ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+            isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+            $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'
+        ) {
+            return 'https://';
+        }
+
+        return 'http://';
+    }
+
+    /**
+     * Get URL
+     *
+     * @param null|string $url
+     * @return void
+     */
+    public static function getUrl(?string $url = null): string
+    {
+        return self::getProtocol() . $_SERVER['HTTP_HOST'] . $url ?? '';
     }
 }

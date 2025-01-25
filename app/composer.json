@@ -11,7 +11,8 @@
             "config/app_config.php",
             "config/database_config.php",
             "config/http_config.php",
-            "config/routes_config.php"
+            "config/routes_config.php",
+            "config/view_config.php"
         ]
     },
     "authors": [
