@@ -2,12 +2,24 @@
 
 declare(strict_types=1);
 
+use Castroitalo\Services\ServerService;
+use Castroitalo\Services\SessionService;
+
 require_once __DIR__ . '/bootstrap.php';
 
-if (is_null($databaseConnection)) {
-    http_response_code(500);
-    header('Content-type: application/json');
-    echo json_encode([
-        'message' => 'banco de dados nao conectou'
-    ]);
+ob_start();
+
+try {
+} catch (Exception $ex) {
+    // Show error if it is localhost
+    if (ServerService::isLocalhost()) {
+        var_dump($ex->getMessage());
+        exit();
+    }
+
+    error_log($ex->getMessage());
+    ServerService::setApiResponse(500, 'something went wrong');
 }
+
+
+ob_end_flush();
