@@ -1,15 +1,5 @@
 services:
 
-  server:
-    build:
-      dockerfile: ./dev_env/nginx/docker/Dockerfile
-    ports:
-      - '8080:80'
-    volumes:
-      - ./dev_env/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      - /var/www/html/vendor
-      - ./app:/var/www/html
-
   mariadb:
     image: mariadb:10.4.31
     environment:
@@ -24,10 +14,11 @@ services:
       dockerfile: ./dev_env/php/docker/Dockerfile
     volumes:
       - ./dev_env/php/conf/php.ini:/usr/local/etc/php/php.ini
-      - ./app:/var/www/html
-    command: sh -c "composer install && php-fpm"
+      - .:/var/www/html
     depends_on:
       - mariadb
+    ports:
+      - 8080:80
 
   redis:
     image: redis:latest
