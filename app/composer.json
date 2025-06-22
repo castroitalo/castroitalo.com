@@ -1,0 +1,22 @@
+{
+    "name": "castroitalo/castroitalo",
+    "description": "My personal website",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Castroitalo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "castroitalsdealers",
+            "email": "dev.castro.italo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.3",
+        "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
