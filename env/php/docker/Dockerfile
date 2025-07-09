@@ -21,12 +21,14 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
 
 # Copy app files to the container
-COPY ./app .
+#COPY ./app .
 
 # Get composer autoloader
-RUN composer dump-autoload --optimize
+#RUN composer dump-autoload --optimize
 
 # Install Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g sass
+
+WORKDIR /var/www/html
