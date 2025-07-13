@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Castroitalo\Core\Database\Connection;
 use Dotenv\Dotenv;
 use Dotenv\Exception\InvalidPathException;
 
@@ -26,6 +27,7 @@ try {
         'DB_HOST',
         'DB_NAME',
         'DB_USER',
+        'DB_PORT',
         'APP_ENV'
     ])->notEmpty();
     $dotenv->required('APP_ENV')
@@ -45,6 +47,19 @@ if ($_ENV['APP_ENV'] === 'development') {
 ini_set('session.cookie_httponly', '1');
 ini_set('session.cookie_secure', '1');
 ini_set('session.use_strict_mode', '1');
+
+// Connect to database
+try {
+    Connection::connect();
+} catch (Exception $ex) {
+    error_log("[DB Connection Failed] " . $ex->getMessage());
+
+    if ($_ENV['APP_ENV'] === 'production') {
+        die('Service temporarily unavailable. Please try again later.');
+    } else {
+        die('Database connection failed: ' . $ex->getMessage());
+    }
+}
 
 // Register shutdown function for fatal errors
 // register_shutdown_function(function () {
