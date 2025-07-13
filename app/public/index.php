@@ -1,9 +1,7 @@
 <?php
 
-use Castroitalo\Core\Routing\Route;
+declare(strict_types=1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/bootstrap.php';
 
-$route = new Route();
-
-var_dump($route);
+var_dump($_ENV['DB_HOST']);
